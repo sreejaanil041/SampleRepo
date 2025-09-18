@@ -26,6 +26,15 @@ public class ExcelUtility {
 		return c.getStringCellValue();
 	}
 	
+	public static String getStringData(int a, int b, String sheet) throws IOException{
+		f = new FileInputStream("");
+		w = new XSSFWorkbook(f);
+		sh = w.getSheet(sheet);
+		Row r = sh.getRow(a);
+		Cell c = r.getCell(b);
+		return c.getStringCellValue();
+	}
+	
 	public static String getIntegerData(int a, int b) throws IOException{
 		f = new FileInputStream("");
 		w = new XSSFWorkbook(f);

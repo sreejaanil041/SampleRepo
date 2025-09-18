@@ -19,16 +19,19 @@ public class LoginPage {
 	@FindBy(id = "password") private WebElement passwordField;
 	@FindBy(id = "login-button") private WebElement loginButton;
 	
-	public void enterUsernameOnUsernameField(String UserName) {
+	public LoginPage enterUsernameOnUsernameField(String UserName) {
 		usernameField.sendKeys(UserName);
+		return this;
 	}
 	
-	public void enterPasswordOnPasswordField(String password) {
+	public LoginPage enterPasswordOnPasswordField(String password) {
 		passwordField.sendKeys(password);
+		return this;
 	}
 	
-	public void clickOnLoginButton() {
+	public HomePage clickOnLoginButton() {
 		loginButton.click();
+		return new HomePage(driver);
 	}
  
 }

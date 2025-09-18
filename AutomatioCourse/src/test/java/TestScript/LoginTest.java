@@ -1,25 +1,40 @@
 package TestScript;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import Utilities.ExcelUtility;
 import automation.core.TestNGBase;
+import pages.HomePage;
 import pages.LoginPage;
 
 public class LoginTest extends TestNGBase{
-
+	public HomePage homepage;
 	@Test
 	public void verifyUserLoginWithValidCredential() {
 		
-		String username = ExcelUtility.getStringData(1,0,"LoginPage");
-		String password = ExcelUtility.getStringData(1,1,"password");
+		
+		String username ="";
+		try {
+			username = ExcelUtility.getStringData(1,0,"LoginPage");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String password="";
+		try {
+			password = ExcelUtility.getStringData(1,1,"LoginPage");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUsernameOnUsernameField(username);
-		loginpage.enterPasswordOnPasswordField(password);
-		loginpage.clickOnLoginButton();
+		loginpage.enterUsernameOnUsernameField(username).enterPasswordOnPasswordField(password);
+		homepage=loginpage.clickOnLoginButton();
 //		driver.navigate().to("https://www.saucedemo.com/v1/");
 //	WebElement	usernameField = driver.findElement(By.id("user-name"));
 //	System.out.println(usernameField);
